@@ -748,11 +748,13 @@ function App() {
 
       {screen === "ending" && (
         <section className="ending-screen">
-          <p>A birthday lasts only one day.</p>
+          <p>Here's to today.</p>
           <p>
-            But the memories we share
+            Here's to joy,
             <br />
-            will always stay with us.
+            to laughter,
+             <br />
+             and to everything beautiful ahead.
           </p>
           <h2>Happy Birthday, Ember. ❤️</h2>
           <div className="ending-signature">
