@@ -1537,3 +1537,132 @@ text-shadow: 0 0 14px rgba(205, 155, 74, 0.18);
     width: 86vw;
   }
 }
+
+
+/* =========================
+   Wishes page decorations
+   ========================= */
+
+.wishes-screen {
+  isolation: isolate;
+}
+
+.wishes-screen > *:not(.wishes-decorations) {
+  position: relative;
+  z-index: 2;
+}
+
+.wishes-decorations {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.wishes-deco {
+  position: absolute;
+  display: block;
+  color: #e8a8b6;
+  font-size: clamp(18px, 2vw, 30px);
+  opacity: 0.7;
+  filter: drop-shadow(0 4px 10px rgba(138, 92, 80, 0.08));
+  animation: wishesDecoFloat 4.6s ease-in-out infinite;
+}
+
+.wishes-deco-1 {
+  top: 13%;
+  left: 4%;
+  color: #e7b55e;
+  animation-delay: -0.4s;
+}
+
+.wishes-deco-2 {
+  top: 24%;
+  right: 5%;
+  color: #e7a0ad;
+  animation-delay: -1.5s;
+}
+
+.wishes-deco-3 {
+  top: 43%;
+  left: 2.5%;
+  color: #f2bdca;
+  animation-delay: -2.4s;
+}
+
+.wishes-deco-4 {
+  top: 58%;
+  right: 3%;
+  font-size: clamp(20px, 2.3vw, 34px);
+  transform: rotate(8deg);
+  animation-delay: -0.9s;
+}
+
+.wishes-deco-5 {
+  bottom: 24%;
+  left: 5%;
+  color: #e7b55e;
+  animation-delay: -3.2s;
+}
+
+.wishes-deco-6 {
+  bottom: 12%;
+  right: 6%;
+  color: #e8a4b1;
+  animation-delay: -2s;
+}
+
+.wishes-deco-7 {
+  top: 72%;
+  left: 2%;
+  color: #efc4ce;
+  animation-delay: -1.2s;
+}
+
+.wishes-deco-8 {
+  top: 34%;
+  right: 2%;
+  font-size: clamp(18px, 2vw, 28px);
+  animation-delay: -3.6s;
+}
+
+.all-wishes-view {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.all-wishes-continue {
+  margin-top: 38px;
+}
+
+@keyframes wishesDecoFloat {
+  0%,
+  100% {
+    opacity: 0.5;
+    transform: translateY(0) rotate(-3deg) scale(0.96);
+  }
+
+  50% {
+    opacity: 0.95;
+    transform: translateY(-8px) rotate(4deg) scale(1.06);
+  }
+}
+
+@media (max-width: 750px) {
+  .wishes-deco-4,
+  .wishes-deco-8 {
+    display: none;
+  }
+
+  .wishes-deco {
+    opacity: 0.48;
+  }
+
+  .all-wishes-continue {
+    width: min(100%, 360px);
+    margin-top: 28px;
+  }
+}
