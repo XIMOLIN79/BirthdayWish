@@ -11,6 +11,56 @@ import fireworksImg from "./assets/fireworks.png";
 
 import { getWishes, saveWish } from "./database";
 
+const memorialPhotoModules = import.meta.glob(
+  "./assets/memories/*.{png,jpg,jpeg,webp,gif}",
+  {
+    eager: true,
+    import: "default",
+  },
+);
+
+const memorialPhotos = Object.entries(memorialPhotoModules).map(
+  ([path, imageData], index) => {
+    const filename = path.split("/").pop() ?? `memory-${index + 1}`;
+    const cleanName = filename.replace(/\.[^.]+$/, "").replace(/[-_]+/g, " ");
+
+    return {
+      id: `memorial-${path}`,
+      imageData,
+      name: cleanName || `Memory ${index + 1}`,
+      source: "memorial",
+    };
+  },
+);
+
+const editorialCards = [
+  {
+    id: "editorial-for-ember",
+    type: "editorial",
+    eyebrow: "A LITTLE ALBUM",
+    title: "FOR EMBER",
+    text: "Collected with love.",
+  },
+  {
+    id: "editorial-mtg",
+    type: "editorial",
+    eyebrow: "MIAO TIAN GE",
+    title: "2026",
+    text: "Moments worth keeping.",
+  },
+];
+
+function shuffleItems(items) {
+  const next = [...items];
+
+  for (let index = next.length - 1; index > 0; index -= 1) {
+    const randomIndex = Math.floor(Math.random() * (index + 1));
+    [next[index], next[randomIndex]] = [next[randomIndex], next[index]];
+  }
+
+  return next;
+}
+
 const MAX_IMAGE_BYTES = 650_000;
 const MAX_IMAGE_SIDE = 1200;
 
@@ -92,6 +142,7 @@ function App() {
   const [isLoadingWishes, setIsLoadingWishes] = useState(false);
   const [loadError, setLoadError] = useState("");
   const [lightboxPhoto, setLightboxPhoto] = useState(null);
+  const [galleryItems, setGalleryItems] = useState([]);
 
   useEffect(() => {
     if (screen !== "home") return undefined;
@@ -180,6 +231,27 @@ function App() {
       cancelled = true;
     };
   }, [screen]);
+
+  useEffect(() => {
+    if (screen !== "gallery") return;
+
+    const uploadedPhotos = wishes
+      .filter((wish) => wish.imageData)
+      .map((wish) => ({
+        ...wish,
+        source: "submitted",
+      }));
+
+    const combinedItems = [
+      ...uploadedPhotos,
+      ...memorialPhotos,
+      ...(uploadedPhotos.length + memorialPhotos.length >= 6
+        ? editorialCards
+        : []),
+    ];
+
+    setGalleryItems(shuffleItems(combinedItems));
+  }, [screen, wishes]);
 
   useEffect(() => {
     if (!lightboxPhoto) return undefined;
@@ -674,7 +746,7 @@ function App() {
                 <button
                   className="primary-button all-wishes-continue"
                   onClick={() =>
-                    setScreen(photoWishes.length > 0 ? "gallery" : "ending")
+                    setScreen(photoWishes.length > 0 || memorialPhotos.length > 0 ? "gallery" : "ending")
                   }
                 >
                   看完祝福，继续 →
@@ -683,18 +755,12 @@ function App() {
             )}
         </section>
       )}
-
       {screen === "gallery" && (
         <section className="gallery-screen">
-          <div className="gallery-sparkles" aria-hidden="true">
-            {Array.from({ length: 10 }, (_, index) => (
-              <span
-                key={index}
-                className={`gallery-sparkle gallery-sparkle-${index + 1}`}
-              >
-                {index % 2 === 0 ? "✦" : "✧"}
-              </span>
-            ))}
+          <div className="gallery-ambient" aria-hidden="true">
+            <span className="gallery-orbit gallery-orbit-1" />
+            <span className="gallery-orbit gallery-orbit-2" />
+            <span className="gallery-grain" />
           </div>
 
           <div className="gallery-content">
@@ -708,24 +774,49 @@ function App() {
               </div>
 
               <h2>照片墙</h2>
+              <p className="gallery-subtitle">
+                A little archive of the moments we chose to keep.
+              </p>
             </div>
 
             <div className="photo-wall">
-              {photoWishes.map((wish, index) => (
-                <button
-                  type="button"
-                  key={wish.id}
-                  className={`photo-wall-item photo-wall-item-${(index % 6) + 1}`}
-                  onClick={() => setLightboxPhoto(wish)}
-                  aria-label={`放大查看 ${wish.name} 上传的照片`}
-                >
-                  <img
-                    src={wish.imageData}
-                    alt={`${wish.name} 上传的照片`}
-                  />
-                  <span className="photo-wall-name">From {wish.name}</span>
-                </button>
-              ))}
+              {galleryItems.map((item, index) => {
+                if (item.type === "editorial") {
+                  return (
+                    <article
+                      key={item.id}
+                      className={`editorial-tile editorial-tile-${(index % 2) + 1}`}
+                    >
+                      <span>{item.eyebrow}</span>
+                      <strong>{item.title}</strong>
+                      <p>{item.text}</p>
+                    </article>
+                  );
+                }
+
+                return (
+                  <button
+                    type="button"
+                    key={item.id}
+                    className={`photo-wall-item photo-wall-item-${(index % 8) + 1} ${
+                      item.source === "memorial"
+                        ? "photo-wall-item-memorial"
+                        : ""
+                    }`}
+                    onClick={() => setLightboxPhoto(item)}
+                    aria-label={`放大查看 ${item.name} 的照片`}
+                  >
+                    <img src={item.imageData} alt={`${item.name} 的照片`} />
+
+                    <span className="photo-wall-caption">
+                      <small>
+                        {item.source === "memorial" ? "MEMORY" : "FROM"}
+                      </small>
+                      <b>{item.name}</b>
+                    </span>
+                  </button>
+                );
+              })}
             </div>
 
             <button
