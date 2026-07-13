@@ -1540,137 +1540,11 @@ text-shadow: 0 0 14px rgba(205, 155, 74, 0.18);
 
 
 /* =========================
-   Wishes page decorations
+   Wishes decorations — final
    ========================= */
 
 .wishes-screen {
   isolation: isolate;
-}
-
-.wishes-screen > *:not(.wishes-decorations) {
-  position: relative;
-  z-index: 2;
-}
-
-.wishes-decorations {
-  position: absolute;
-  inset: 0;
-  z-index: 1;
-  overflow: hidden;
-  pointer-events: none;
-}
-
-.wishes-deco {
-  position: absolute;
-  display: block;
-  color: #e8a8b6;
-  font-size: clamp(18px, 2vw, 30px);
-  opacity: 0.7;
-  filter: drop-shadow(0 4px 10px rgba(138, 92, 80, 0.08));
-  animation: wishesDecoFloat 4.6s ease-in-out infinite;
-}
-
-.wishes-deco-1 {
-  top: 13%;
-  left: 4%;
-  color: #e7b55e;
-  animation-delay: -0.4s;
-}
-
-.wishes-deco-2 {
-  top: 24%;
-  right: 5%;
-  color: #e7a0ad;
-  animation-delay: -1.5s;
-}
-
-.wishes-deco-3 {
-  top: 43%;
-  left: 2.5%;
-  color: #f2bdca;
-  animation-delay: -2.4s;
-}
-
-.wishes-deco-4 {
-  top: 58%;
-  right: 3%;
-  font-size: clamp(20px, 2.3vw, 34px);
-  transform: rotate(8deg);
-  animation-delay: -0.9s;
-}
-
-.wishes-deco-5 {
-  bottom: 24%;
-  left: 5%;
-  color: #e7b55e;
-  animation-delay: -3.2s;
-}
-
-.wishes-deco-6 {
-  bottom: 12%;
-  right: 6%;
-  color: #e8a4b1;
-  animation-delay: -2s;
-}
-
-.wishes-deco-7 {
-  top: 72%;
-  left: 2%;
-  color: #efc4ce;
-  animation-delay: -1.2s;
-}
-
-.wishes-deco-8 {
-  top: 34%;
-  right: 2%;
-  font-size: clamp(18px, 2vw, 28px);
-  animation-delay: -3.6s;
-}
-
-.all-wishes-view {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.all-wishes-continue {
-  margin-top: 38px;
-}
-
-@keyframes wishesDecoFloat {
-  0%,
-  100% {
-    opacity: 0.5;
-    transform: translateY(0) rotate(-3deg) scale(0.96);
-  }
-
-  50% {
-    opacity: 0.95;
-    transform: translateY(-8px) rotate(4deg) scale(1.06);
-  }
-}
-
-@media (max-width: 750px) {
-  .wishes-deco-4,
-  .wishes-deco-8 {
-    display: none;
-  }
-
-  .wishes-deco {
-    opacity: 0.48;
-  }
-
-  .all-wishes-continue {
-    width: min(100%, 360px);
-    margin-top: 28px;
-  }
-}
-
-/* ===== Visible wishes decorations + moved continue button ===== */
-
-.wishes-screen {
-  isolation: isolate;
   overflow: visible;
 }
 
@@ -1681,30 +1555,76 @@ text-shadow: 0 0 14px rgba(205, 155, 74, 0.18);
 
 .wishes-decorations {
   position: absolute;
-  inset: -55px -90px;
+  inset: -45px -75px;
   z-index: 1;
-  pointer-events: none;
   overflow: visible;
+  pointer-events: none;
 }
 
 .wishes-deco {
   position: absolute;
   display: block;
-  font-size: clamp(30px, 3vw, 50px);
   line-height: 1;
+  font-size: clamp(30px, 3vw, 50px);
   opacity: 0.92;
   filter: drop-shadow(0 5px 12px rgba(127, 82, 69, 0.12));
   animation: wishesDecoFloat 3.8s ease-in-out infinite;
 }
 
-.wishes-deco-1 { top: 7%; left: 0; color: #d9a441; }
-.wishes-deco-2 { top: 22%; right: 1%; color: #e58ea3; animation-delay: -0.6s; }
-.wishes-deco-3 { top: 42%; left: -2%; color: #efb5c2; animation-delay: -1.2s; }
-.wishes-deco-4 { top: 57%; right: -1%; font-size: clamp(34px, 3.5vw, 56px); animation-delay: -1.8s; }
-.wishes-deco-5 { bottom: 20%; left: 1%; color: #d9a441; animation-delay: -2.4s; }
-.wishes-deco-6 { bottom: 8%; right: 2%; color: #df8ea3; animation-delay: -3s; }
-.wishes-deco-7 { top: 73%; left: -1%; color: #efb5c2; animation-delay: -0.9s; }
-.wishes-deco-8 { top: 35%; right: -2%; font-size: clamp(32px, 3vw, 48px); animation-delay: -2.1s; }
+.wishes-deco-1 {
+  top: 8%;
+  left: 0;
+  color: #d9a441;
+}
+
+.wishes-deco-2 {
+  top: 22%;
+  right: 1%;
+  color: #e58ea3;
+  animation-delay: -0.6s;
+}
+
+.wishes-deco-3 {
+  top: 42%;
+  left: -1%;
+  color: #efb5c2;
+  animation-delay: -1.2s;
+}
+
+.wishes-deco-4 {
+  top: 58%;
+  right: 0;
+  font-size: clamp(34px, 3.5vw, 56px);
+  animation-delay: -1.8s;
+}
+
+.wishes-deco-5 {
+  bottom: 20%;
+  left: 1%;
+  color: #d9a441;
+  animation-delay: -2.4s;
+}
+
+.wishes-deco-6 {
+  bottom: 8%;
+  right: 2%;
+  color: #df8ea3;
+  animation-delay: -3s;
+}
+
+.wishes-deco-7 {
+  top: 73%;
+  left: 0;
+  color: #efb5c2;
+  animation-delay: -0.9s;
+}
+
+.wishes-deco-8 {
+  top: 35%;
+  right: -1%;
+  font-size: clamp(32px, 3vw, 48px);
+  animation-delay: -2.1s;
+}
 
 .all-wishes-view {
   width: 100%;
@@ -1722,10 +1642,12 @@ text-shadow: 0 0 14px rgba(205, 155, 74, 0.18);
 }
 
 @keyframes wishesDecoFloat {
-  0%, 100% {
+  0%,
+  100% {
     opacity: 0.55;
     transform: translateY(0) rotate(-5deg) scale(0.92);
   }
+
   50% {
     opacity: 1;
     transform: translateY(-10px) rotate(6deg) scale(1.08);
@@ -1734,7 +1656,7 @@ text-shadow: 0 0 14px rgba(205, 155, 74, 0.18);
 
 @media (max-width: 750px) {
   .wishes-decorations {
-    inset: -20px -6px;
+    inset: -18px -4px;
     overflow: hidden;
   }
 

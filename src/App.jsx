@@ -519,6 +519,17 @@ function App() {
 
       {screen === "wishes" && (
         <section className="wishes-screen">
+          <div className="wishes-decorations" aria-hidden="true">
+            <span className="wishes-deco wishes-deco-1">✦</span>
+            <span className="wishes-deco wishes-deco-2">♡</span>
+            <span className="wishes-deco wishes-deco-3">✧</span>
+            <span className="wishes-deco wishes-deco-4">🎀</span>
+            <span className="wishes-deco wishes-deco-5">✦</span>
+            <span className="wishes-deco wishes-deco-6">♡</span>
+            <span className="wishes-deco wishes-deco-7">✧</span>
+            <span className="wishes-deco wishes-deco-8">💌</span>
+          </div>
+
           <div className="wishes-header">
             <div className="wishes-title">
               <p className="small-title">BIRTHDAY WISHES</p>
@@ -625,14 +636,6 @@ function App() {
                   </button>
                 </div>
 
-                <button
-                  className="primary-button"
-                  onClick={() =>
-                    setScreen(photoWishes.length > 0 ? "gallery" : "ending")
-                  }
-                >
-                  看完祝福，继续 →
-                </button>
               </div>
             )}
 
@@ -640,26 +643,41 @@ function App() {
             !loadError &&
             wishes.length > 0 &&
             viewMode === "grid" && (
-              <div className="preview-grid">
-                {wishes.map((wish, index) => (
-                  <button
-                    className="preview-card"
-                    key={wish.id}
-                    onClick={() => {
-                      setCurrentIndex(index);
-                      setViewMode("album");
-                    }}
-                  >
-                    {wish.imageData ? (
-                      <img src={wish.imageData} alt="" className="preview-photo" />
-                    ) : (
-                      <span className="preview-emoji">💌</span>
-                    )}
-                    <span className="preview-name">{wish.name}</span>
-                    <span className="preview-message">{wish.message}</span>
-                    <span className="read-more">打开这张祝福 →</span>
-                  </button>
-                ))}
+              <div className="all-wishes-view">
+                <div className="preview-grid">
+                  {wishes.map((wish, index) => (
+                    <button
+                      className="preview-card"
+                      key={wish.id}
+                      onClick={() => {
+                        setCurrentIndex(index);
+                        setViewMode("album");
+                      }}
+                    >
+                      {wish.imageData ? (
+                        <img
+                          src={wish.imageData}
+                          alt=""
+                          className="preview-photo"
+                        />
+                      ) : (
+                        <span className="preview-emoji">💌</span>
+                      )}
+                      <span className="preview-name">{wish.name}</span>
+                      <span className="preview-message">{wish.message}</span>
+                      <span className="read-more">打开这张祝福 →</span>
+                    </button>
+                  ))}
+                </div>
+
+                <button
+                  className="primary-button all-wishes-continue"
+                  onClick={() =>
+                    setScreen(photoWishes.length > 0 ? "gallery" : "ending")
+                  }
+                >
+                  看完祝福，继续 →
+                </button>
               </div>
             )}
         </section>
