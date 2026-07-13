@@ -7,6 +7,7 @@ import catImg from "./assets/cat.png";
 import popperImg from "./assets/popper.png";
 import cake2Img from "./assets/cake2.webp";
 import catYarnImg from "./assets/猫毛线球-裁剪.png";
+import fireworksImg from "./assets/fireworks.png";
 
 import { getWishes, saveWish } from "./database";
 
@@ -745,22 +746,41 @@ function App() {
           </div>
         </section>
       )}
-
       {screen === "ending" && (
         <section className="ending-screen">
+          <img
+            src={fireworksImg}
+            alt=""
+            className="ending-fireworks ending-fireworks-left"
+            aria-hidden="true"
+            draggable="false"
+          />
+
           <p>Here's to today.</p>
+
           <p>
             Here's to joy,
             <br />
             to laughter,
-             <br />
-             and to everything beautiful ahead.
+            <br />
+            and to everything beautiful ahead.
           </p>
+
           <h2>Happy Birthday, Ember. ❤️</h2>
+
           <div className="ending-signature">
             <span>With love,</span>
-            <strong>妙天阁 & Friends❤️</strong>
+            <strong>妙天阁 &amp; Friends ❤️</strong>
           </div>
+
+          <img
+            src={fireworksImg}
+            alt=""
+            className="ending-fireworks ending-fireworks-right"
+            aria-hidden="true"
+            draggable="false"
+          />
+
           <span className="hidden-credit">Designed by 秋月.</span>
         </section>
       )}
