@@ -1714,3 +1714,69 @@ text-shadow: 0 0 14px rgba(205, 155, 74, 0.18);
     margin-top: 28px;
   }
 }
+
+
+/* =========================
+   Mobile album controls fix
+   ========================= */
+
+.album-controls {
+  max-width: 100%;
+}
+
+.circle-button {
+  flex: 0 0 48px;
+}
+
+.dots {
+  min-width: 0;
+  max-width: calc(100% - 120px);
+  overflow-x: auto;
+  overflow-y: hidden;
+  justify-content: flex-start;
+  padding: 6px 4px;
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
+}
+
+.dots::-webkit-scrollbar {
+  display: none;
+}
+
+.dot {
+  flex: 0 0 9px;
+}
+
+.dot.selected {
+  flex-basis: 26px;
+}
+
+@media (max-width: 600px) {
+  .album-controls {
+    width: 100%;
+    gap: 10px;
+  }
+
+  .circle-button {
+    width: 44px;
+    height: 44px;
+    flex-basis: 44px;
+  }
+
+  .dots {
+    max-width: calc(100% - 108px);
+    gap: 7px;
+    justify-content: flex-start;
+  }
+
+  .dot {
+    width: 8px;
+    height: 8px;
+    flex-basis: 8px;
+  }
+
+  .dot.selected {
+    width: 22px;
+    flex-basis: 22px;
+  }
+}
