@@ -759,7 +759,7 @@ function App() {
           <h2>Happy Birthday, Ember. ❤️</h2>
           <div className="ending-signature">
             <span>With love,</span>
-            <strong>妙天阁 ❤️</strong>
+            <strong>妙天阁 & Friends❤️</strong>
           </div>
           <span className="hidden-credit">Designed by 秋月.</span>
         </section>
