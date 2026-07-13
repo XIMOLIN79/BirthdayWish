@@ -45,7 +45,7 @@ const editorialCards = [
   {
     id: "editorial-mtg",
     type: "editorial",
-    eyebrow: "MIAO TIAN GE",
+    eyebrow: "妙天阁",
     title: "2026",
     text: "Made by all of us.",
     variant: "white",

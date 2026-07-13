@@ -1697,4 +1697,32 @@ button {
   .ending-fireworks {
     animation: none;
   }
+  .hidden-credit {
+  position: absolute;
+  right: 18px;
+  bottom: 14px;
+
+  z-index: 5;
+
+  font-size: 10px;
+  font-weight: 400;
+  letter-spacing: 0.08em;
+
+  color: rgba(255,255,255,.22);
+
+  user-select: none;
+  pointer-events: none;
+}
+
+@media (max-width:750px){
+
+  .hidden-credit{
+
+    right:12px;
+    bottom:10px;
+
+    font-size:8px;
+
+  }
+}
 }
