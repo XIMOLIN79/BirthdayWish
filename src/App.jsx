@@ -37,16 +37,26 @@ const editorialCards = [
   {
     id: "editorial-for-ember",
     type: "editorial",
-    eyebrow: "A LITTLE ALBUM",
+    eyebrow: "BIRTHDAY ARCHIVE",
     title: "FOR EMBER",
-    text: "Collected with love.",
+    text: "A collection of little moments.",
+    variant: "black",
   },
   {
     id: "editorial-mtg",
     type: "editorial",
     eyebrow: "MIAO TIAN GE",
     title: "2026",
-    text: "Moments worth keeping.",
+    text: "Made by all of us.",
+    variant: "white",
+  },
+  {
+    id: "editorial-memories",
+    type: "editorial",
+    eyebrow: "MEMORIES",
+    title: "KEEP THIS",
+    text: "Some moments deserve a page of their own.",
+    variant: "pink",
   },
 ];
 
@@ -785,7 +795,7 @@ function App() {
                   return (
                     <article
                       key={item.id}
-                      className={`editorial-tile editorial-tile-${(index % 2) + 1}`}
+                      className={`editorial-tile editorial-${item.variant}`}
                     >
                       <span>{item.eyebrow}</span>
                       <strong>{item.title}</strong>
@@ -798,7 +808,7 @@ function App() {
                   <button
                     type="button"
                     key={item.id}
-                    className={`photo-wall-item photo-wall-item-${(index % 8) + 1} ${
+                    className={`photo-wall-item magazine-layout-${(index % 10) + 1} ${
                       item.source === "memorial"
                         ? "photo-wall-item-memorial"
                         : ""
@@ -807,6 +817,9 @@ function App() {
                     aria-label={`放大查看 ${item.name} 的照片`}
                   >
                     <img src={item.imageData} alt={`${item.name} 的照片`} />
+
+                    <span className="magazine-corner magazine-corner-top" aria-hidden="true" />
+                    <span className="magazine-corner magazine-corner-bottom" aria-hidden="true" />
 
                     <span className="photo-wall-caption">
                       <small>
