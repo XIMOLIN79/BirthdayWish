@@ -155,6 +155,14 @@ function App() {
   const [galleryItems, setGalleryItems] = useState([]);
 
   useEffect(() => {
+    window.scrollTo({
+      top: 0,
+      left: 0,
+      behavior: "auto",
+    });
+  }, [screen]);
+
+  useEffect(() => {
     if (screen !== "home") return undefined;
 
     let animationFrame = null;
