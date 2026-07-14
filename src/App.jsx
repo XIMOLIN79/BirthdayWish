@@ -227,9 +227,7 @@ function App() {
         const data = await getWishes();
 
         if (!cancelled) {
-          // Wishes are shuffled once whenever they are loaded.
-          const randomizedWishes = shuffleItems(data);
-          setWishes(randomizedWishes);
+          setWishes(data);
           setCurrentIndex(0);
         }
       } catch (error) {
